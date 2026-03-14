@@ -155,9 +155,9 @@ def test_create_scheduler_passes_kwargs():
     """create_scheduler should pass kwargs to the constructor."""
     opt = _make_optimizer()
     scheduler = create_scheduler(opt, "LinearDecayScheduler", total_steps=200, warmup_steps=20, min_lr=0.001)
-    assert scheduler.total_steps == 200
-    assert scheduler.warmup_steps == 20
-    assert scheduler.min_lr == 0.001
+    assert scheduler.total_steps == 200  # type: ignore[attr-defined]
+    assert scheduler.warmup_steps == 20  # type: ignore[attr-defined]
+    assert scheduler.min_lr == 0.001  # type: ignore[attr-defined]
 
 
 @pytest.mark.parametrize(

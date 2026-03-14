@@ -112,7 +112,7 @@ def test_plot_schedule_line_data_length():
     ax = fig.get_axes()[0]
     line = ax.get_lines()[0]
     xdata = line.get_xdata()
-    assert len(xdata) == total_steps
+    assert len(xdata) == total_steps  # type: ignore[arg-type]
 
 
 def test_plot_schedule_different_schedulers():
@@ -192,7 +192,9 @@ def test_compare_schedules_legend_labels():
     }
     fig = compare_schedules(schedulers, total_steps=50)
     ax = fig.get_axes()[0]
-    legend_texts = [t.get_text() for t in ax.get_legend().get_texts()]
+    legend = ax.get_legend()
+    assert legend is not None
+    legend_texts = [t.get_text() for t in legend.get_texts()]
     for label in labels:
         assert label in legend_texts
 

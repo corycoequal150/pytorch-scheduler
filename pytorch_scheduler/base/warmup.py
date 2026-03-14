@@ -66,11 +66,11 @@ class WarmupScheduler(BaseScheduler):
 
         # After warmup, delegate to base scheduler with adjusted step
         adjusted_step = step - self.warmup_steps
-        if hasattr(self.base_scheduler, "_lr_at"):
+        if isinstance(self.base_scheduler, BaseScheduler):
             return self.base_scheduler._lr_at(adjusted_step, base_lrs)
         # Fallback for non-BaseScheduler instances: mutate last_epoch temporarily
         self.base_scheduler.last_epoch = adjusted_step
-        return self.base_scheduler.get_lr()
+        return [float(lr) for lr in self.base_scheduler.get_lr()]
 
     def state_dict(self) -> dict:  # type: ignore[override]
         state = super().state_dict()

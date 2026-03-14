@@ -10,8 +10,7 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from torch.optim import Optimizer
-
-    from pytorch_scheduler.base.scheduler import BaseScheduler
+    from torch.optim.lr_scheduler import LRScheduler
 
 PRESETS: dict[str, dict] = {
     "llm_pretrain": {
@@ -93,7 +92,7 @@ def create_from_preset(
     preset: str,
     total_steps: int,
     **overrides,
-) -> BaseScheduler:
+) -> LRScheduler:
     """Create a scheduler from a named preset.
 
     Args:

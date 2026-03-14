@@ -44,7 +44,7 @@ class BaseScheduler(LRScheduler, abc.ABC):
         ...
 
     def get_lr(self) -> list[float]:
-        return self._lr_at(self.last_epoch, list(self.base_lrs))
+        return self._lr_at(self.last_epoch, [float(lr) for lr in self.base_lrs])
 
     def validate_config(self, total_training_steps: int | None = None) -> None:
         """Validate scheduler configuration and warn about potential misuse.

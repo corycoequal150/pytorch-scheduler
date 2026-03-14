@@ -5,7 +5,7 @@ from __future__ import annotations
 import warnings
 
 import matplotlib.pyplot as plt
-import scienceplots  # noqa: F401
+import scienceplots  # type: ignore[import-not-found]  # noqa: F401
 import torch
 
 import pytorch_scheduler as ps

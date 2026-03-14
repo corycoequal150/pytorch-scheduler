@@ -4,7 +4,7 @@ from contextlib import contextmanager
 from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
-    from collections.abc import Generator
+    from collections.abc import Generator, Mapping
 
     from matplotlib.figure import Figure
     from torch.optim.lr_scheduler import LRScheduler
@@ -30,7 +30,7 @@ def _style_context() -> Generator[None]:
     """Apply SciencePlots style if available, otherwise fall back to default."""
     plt = _import_matplotlib()
     try:
-        import scienceplots  # noqa: F401
+        import scienceplots  # type: ignore[import-not-found]  # noqa: F401
 
         with plt.style.context(_STYLE):
             yield
@@ -84,7 +84,7 @@ def plot_schedule(
 
 
 def compare_schedules(
-    schedulers: dict[str, LRScheduler],
+    schedulers: Mapping[str, LRScheduler],
     total_steps: int,
     title: str = "LR Schedule Comparison",
     figsize: tuple[float, float] = (12, 5),

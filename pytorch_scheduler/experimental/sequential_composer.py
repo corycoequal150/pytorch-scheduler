@@ -4,6 +4,8 @@ from typing import TYPE_CHECKING
 
 from torch.optim.lr_scheduler import LRScheduler
 
+from pytorch_scheduler.base.scheduler import BaseScheduler
+
 if TYPE_CHECKING:
     from torch.optim import Optimizer
 
@@ -61,11 +63,11 @@ class SequentialComposer(LRScheduler):
         step = self.last_epoch
         scheduler, offset = self._get_active_scheduler_and_offset(step)
         adjusted_step = step - offset
-        if hasattr(scheduler, "_lr_at"):
-            return scheduler._lr_at(adjusted_step, list(self.base_lrs))
+        if isinstance(scheduler, BaseScheduler):
+            return scheduler._lr_at(adjusted_step, [float(lr) for lr in self.base_lrs])
         # Fallback for non-BaseScheduler instances
         scheduler.last_epoch = adjusted_step
-        return scheduler.get_lr()
+        return [float(lr) for lr in scheduler.get_lr()]
 
     def state_dict(self) -> dict:  # type: ignore[override]
         state = super().state_dict()

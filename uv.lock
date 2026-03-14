@@ -1247,7 +1247,7 @@ wheels = [
 
 [[package]]
 name = "pytorch-scheduler"
-version = "0.1.0"
+version = "0.2.0"
 source = { editable = "." }
 dependencies = [
     { name = "torch" },
@@ -1267,11 +1267,6 @@ viz = [
     { name = "scienceplots" },
 ]
 
-[package.dev-dependencies]
-dev = [
-    { name = "hypothesis" },
-]
-
 [package.metadata]
 requires-dist = [
     { name = "hypothesis", marker = "extra == 'dev'", specifier = ">=6.0" },
@@ -1285,9 +1280,6 @@ requires-dist = [
     { name = "torch", specifier = ">=2.0" },
 ]
 provides-extras = ["viz", "dev"]
-
-[package.metadata.requires-dev]
-dev = [{ name = "hypothesis", specifier = ">=6.151.9" }]
 
 [[package]]
 name = "ruff"
