@@ -204,7 +204,7 @@ Warmup-Stable-Decay schedule from MiniCPM. Three phases: linear warmup, constant
 phase, then a smooth decay using one of three decay types. The decay function is
 configurable (cosine, linear, or square-root).
 
-**Paper:** [MiniCPM: Scaling Large Language Models with Scalable Strategies](https://arxiv.org/abs/2404.06395) — Hu et al., 2024
+**Paper:** [MiniCPM: Unveiling the Potential of Small Language Models with Scalable Training Strategies](https://arxiv.org/abs/2404.06395) — Shengding Hu et al., 2024
 
 **Formula:**
 
@@ -315,7 +315,7 @@ scheduler = FlatCosineScheduler(
 Linear Decay to Zero (D2Z) schedule. Optional linear warmup followed by a linear decay
 to `min_lr`. From the compute-optimal training scaling laws paper by Hägele et al.
 
-**Paper:** [Scaling Laws and Compute-Optimal Training Beyond Fixed Training Durations](https://arxiv.org/abs/2405.18392) — Hägele et al., 2024
+**Paper:** [Scaling Laws and Compute-Optimal Training Beyond Fixed Training Durations](https://arxiv.org/abs/2405.18392) — Alexander Hägele et al., 2024
 
 **Formula:**
 
@@ -367,7 +367,7 @@ each cycle, per-cycle peak LR decay via `gamma`, and variable cycle lengths via
 `cycle_mult`. The LR range (`max_lr` / `min_lr`) is managed independently of the
 optimizer's initial param-group LRs.
 
-**Paper:** [SGDR: Stochastic Gradient Descent with Warm Restarts](https://arxiv.org/abs/1608.03983) — Loshchilov & Hutter, ICLR 2017
+**Paper:** [SGDR: Stochastic Gradient Descent with Warm Restarts](https://arxiv.org/abs/1608.03983) — Ilya Loshchilov & Frank Hutter, ICLR 2017
 
 **Formula:**
 
@@ -430,7 +430,7 @@ scheduler = CosineAnnealingWarmupRestarts(
 Inverse square root schedule from "Attention is All You Need". Warmup is built into
 the mathematical formula — do **not** wrap this with `WarmupScheduler`.
 
-**Paper:** [Attention is All You Need](https://arxiv.org/abs/1706.03762) — Vaswani et al., NeurIPS 2017
+**Paper:** [Attention is All You Need](https://arxiv.org/abs/1706.03762) — Ashish Vaswani et al., NeurIPS 2017
 
 **Formula:**
 
@@ -477,7 +477,7 @@ Slanted triangular schedule from ULMFiT. A short linear warmup followed by a lon
 linear decay. The `ratio` parameter controls how far the LR rises from its starting
 point (`base_lr / ratio`) to the peak (`base_lr`) during the warmup phase.
 
-**Paper:** [Universal Language Model Fine-tuning for Text Classification](https://arxiv.org/abs/1801.06146) — Howard & Ruder, 2018
+**Paper:** [Universal Language Model Fine-tuning for Text Classification](https://arxiv.org/abs/1801.06146) — Jeremy Howard & Sebastian Ruder, ACL 2018
 
 **Formula:**
 
@@ -537,7 +537,7 @@ Tanh-based decay schedule. The `steepness` parameter controls how sharp the
 transition from `base_lr` to `min_lr` is. Higher steepness produces an
 abrupt step-function-like transition; lower steepness gives a gradual S-curve.
 
-**Paper:** [Online Learning Rate Adaptation with Hypergradient Descent](https://arxiv.org/abs/1703.04782) — Baydin et al., 2018
+**Paper:** [Online Learning Rate Adaptation with Hypergradient Descent](https://arxiv.org/abs/1703.04782) — Atılım Güneş Baydin et al., 2018
 
 **Formula:**
 
@@ -578,7 +578,7 @@ k-decay cosine schedule. The exponent `k` warps the cosine argument, controlling
 when decay happens: `k > 1` keeps LR high longer before a sharp drop; `k < 1`
 decays quickly early on; `k == 1` is standard cosine annealing.
 
-**Paper:** [k-decay: A New Method for Learning Rate Schedule](https://arxiv.org/abs/2004.05909) — Zhang & Li, 2020
+**Paper:** [k-decay: A New Method for Learning Rate Schedule](https://arxiv.org/abs/2004.05909) — Tao Zhang & Wei Li, 2020
 
 **Formula:**
 
@@ -618,7 +618,7 @@ Power-law decay inspired by the Kaplan et al. scaling laws. Decays as
 `base_lr * (step / warmup_steps)^(-alpha)` after warmup. `alpha=0.5` reproduces
 inverse-square-root decay; `alpha=1.0` gives inverse-linear decay.
 
-**Paper:** [Scaling Laws for Neural Language Models](https://arxiv.org/abs/2001.08361) — Kaplan et al., 2020
+**Paper:** [Scaling Laws for Neural Language Models](https://arxiv.org/abs/2001.08361) — Jared Kaplan et al., 2020
 
 **Formula:**
 
@@ -669,7 +669,7 @@ REX (Revisiting Budgeted Training) schedule. A simple closed-form schedule desig
 fixed training budgets. Decays from `base_lr` to 0 with a convex curve that outperforms
 cosine on several tasks under the same compute budget.
 
-**Paper:** [Revisiting Budgeted Training with an Improved Schedule](https://arxiv.org/abs/2107.04197) — MLSys 2022
+**Paper:** [Revisiting Budgeted Training with an Improved Schedule](https://arxiv.org/abs/2107.04197) — John Chen, Cameron R. Wolfe & Anastasios Kyrillidis, MLSys 2022
 
 **Formula:**
 
@@ -709,7 +709,7 @@ Epoch-insensitive hyperbolic decay. The hyperbolic curve ensures that early LR c
 remain consistent regardless of total training length. The `upper_bound` parameter
 controls the curvature; it must be >= `total_steps`.
 
-**Paper:** [HyperbolicLR: Epoch Insensitive Learning Rate Scheduler](https://arxiv.org/abs/2407.15200) — 2024
+**Paper:** [HyperbolicLR: Epoch Insensitive Learning Rate Scheduler](https://arxiv.org/abs/2407.15200) — Tae-Geun Kim, 2024
 
 **Formula:**
 
@@ -764,7 +764,7 @@ scheduler = HyperbolicLRScheduler(
 Exponential variant of HyperbolicLR. Applies the same hyperbolic curve in log-space,
 yielding exponential decay. `min_lr` must be strictly positive (used as a divisor).
 
-**Paper:** [HyperbolicLR: Epoch Insensitive Learning Rate Scheduler](https://arxiv.org/abs/2407.15200) — 2024
+**Paper:** [HyperbolicLR: Epoch Insensitive Learning Rate Scheduler](https://arxiv.org/abs/2407.15200) — Tae-Geun Kim, 2024
 
 **Formula:**
 
@@ -971,7 +971,7 @@ the optimum without requiring a fixed schedule.
 Call `.eval()` before validation/inference to switch to the averaged parameters, and
 `.train()` to switch back for gradient steps.
 
-**Paper:** [The Road Less Scheduled](https://arxiv.org/abs/2405.15682) — Defazio et al., 2024
+**Paper:** [The Road Less Scheduled](https://arxiv.org/abs/2405.15682) — Aaron Defazio et al., 2024
 
 **Formula:**
 
